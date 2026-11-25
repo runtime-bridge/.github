@@ -65,7 +65,7 @@ rbridge run --workspace ~/src/app "Summarise what this project does"
 
 Or with Go: `go install github.com/runtime-bridge/rbridge/cmd/rbridge@latest`.
 
-The SDKs talk to the rbridge daemon, so start it once with `rbridge daemon start`.
+The SDKs talk to the rbridge daemon and start it themselves when it is not running.
 
 **Node.js** (20 or later)
 
@@ -74,7 +74,7 @@ npm install github:runtime-bridge/rbridge-sdk-ts
 ```
 
 ```js
-import { connect } from "@runtime-bridge/sdk";
+import { connect } from "@rbridge/sdk";
 
 const rb = await connect({ client: "my-app" });
 const result = await rb.run(
