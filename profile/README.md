@@ -93,7 +93,7 @@ rb = Rbridge(runtime="claude-code")
 print(rb.run("Summarise what this project does").text)
 ```
 
-Streaming is one argument (`stream=True`, `{ stream: true }`), `rb.chat()` keeps a conversation, and `run_many` / `runMany` runs prompts side by side. Permission requests are denied unless you pass `approve`. Each SDK's README covers the rest, and the lower-level client for sessions, approvals and modes.
+`stream=True` prints the answer as it is written, `chat=True` makes every `run` continue one conversation (both can be set once on `Rbridge(...)`), and `run_many` / `runMany` runs prompts side by side. Permission requests are denied unless you pass `approve`. Each SDK's README covers the rest, and the lower-level client for sessions, approvals and modes.
 
 ### Principles
 
