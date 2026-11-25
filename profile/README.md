@@ -74,15 +74,10 @@ npm install github:runtime-bridge/rbridge-sdk-ts
 ```
 
 ```js
-import { connect } from "@rbridge/sdk";
+import { Rbridge } from "@rbridge/sdk";
 
-const rb = await connect({ client: "my-app" });
-const result = await rb.run(
-  { workspace: "/home/me/src/app", prompt: "Summarise what this project does" },
-  { onEvent: (e) => e.type === "message.delta" && process.stdout.write(e.data.text) },
-);
-console.log(result.output);
-rb.close();
+const rb = new Rbridge({ runtime: "claude-code" });
+console.log((await rb.run("Summarise what this project does")).text);
 ```
 
 **Python** (3.10 or later)
@@ -92,17 +87,13 @@ pip install git+https://github.com/runtime-bridge/rbridge-sdk-python
 ```
 
 ```python
-import rbridge
+from rbridge import Rbridge
 
-with rbridge.connect(client="my-app") as rb:
-    result = rb.run(
-        {"workspace": "/home/me/src/app", "prompt": "Summarise what this project does"},
-        on_event=lambda e: e["type"] == "message.delta" and print(e["data"]["text"], end=""),
-    )
-    print(result["output"])
+rb = Rbridge(runtime="claude-code")
+print(rb.run("Summarise what this project does").text)
 ```
 
-Permission requests go to an `approver` you pass in; without one they are denied. Each SDK's README covers sessions, approvals, skills, modes and the HTTP transport.
+Streaming is one argument (`stream=True`, `{ stream: true }`), `rb.chat()` keeps a conversation, and `run_many` / `runMany` runs prompts side by side. Permission requests are denied unless you pass `approve`. Each SDK's README covers the rest, and the lower-level client for sessions, approvals and modes.
 
 ### Principles
 
