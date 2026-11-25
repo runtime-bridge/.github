@@ -52,6 +52,8 @@ flowchart LR
 
 ### Try it
 
+Install rbridge and see which runtimes it finds:
+
 ```sh
 curl -fsSL https://raw.githubusercontent.com/runtime-bridge/rbridge/main/scripts/install.sh | sh
 rbridge doctor
@@ -59,6 +61,45 @@ rbridge run --workspace ~/src/app "Summarise what this project does"
 ```
 
 Or with Go: `go install github.com/runtime-bridge/rbridge/cmd/rbridge@latest`.
+
+The SDKs talk to the rbridge daemon, so start it once with `rbridge daemon start`.
+
+**Node.js** (20 or later)
+
+```sh
+npm install github:runtime-bridge/rbridge-sdk-ts
+```
+
+```js
+import { connect } from "@rbridge/sdk";
+
+const rb = await connect({ client: "my-app" });
+const result = await rb.run(
+  { workspace: "/home/me/src/app", prompt: "Summarise what this project does" },
+  { onEvent: (e) => e.type === "message.delta" && process.stdout.write(e.data.text) },
+);
+console.log(result.output);
+rb.close();
+```
+
+**Python** (3.10 or later)
+
+```sh
+pip install git+https://github.com/runtime-bridge/rbridge-sdk-python
+```
+
+```python
+import rbridge
+
+with rbridge.connect(client="my-app") as rb:
+    result = rb.run(
+        {"workspace": "/home/me/src/app", "prompt": "Summarise what this project does"},
+        on_event=lambda e: e["type"] == "message.delta" and print(e["data"]["text"], end=""),
+    )
+    print(result["output"])
+```
+
+Permission requests go to an `approver` you pass in; without one they are denied. Each SDK's README covers sessions, approvals, skills, modes and the HTTP transport.
 
 ### Principles
 
