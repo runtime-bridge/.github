@@ -74,7 +74,7 @@ npm install github:runtime-bridge/rbridge-sdk-ts
 ```
 
 ```js
-import { connect } from "@rbridge/sdk";
+import { connect } from "@runtime-bridge/sdk";
 
 const rb = await connect({ client: "my-app" });
 const result = await rb.run(
