@@ -17,6 +17,8 @@
   <a href="https://github.com/runtime-bridge/rbridge/blob/main/LICENSE"><img alt="Apache 2.0" src="https://img.shields.io/badge/license-Apache%202.0-0273FD?style=flat-square"></a>
 </p>
 
+<p align="center"><b><a href="https://runtime-bridge.github.io">Website</a></b> · <b><a href="https://runtime-bridge.github.io/docs/">Documentation</a></b> · <b><a href="https://runtime-bridge.github.io/docs/examples/">Examples</a></b></p>
+
 ---
 
 Developers already pay for and sign in to agent runtimes such as Claude Code, OpenCode, Codex and Gemini CLI. rbridge lets any program on the same machine hand work to those runtimes through one interface, with the same events, approvals and Agent Skills whichever runtime does the work.
@@ -49,6 +51,7 @@ flowchart LR
 | [rbridge](https://github.com/runtime-bridge/rbridge) | The CLI, daemon, MCP server and Go library |
 | [rbridge-sdk-ts](https://github.com/runtime-bridge/rbridge-sdk-ts) | Node.js client, no dependencies |
 | [rbridge-sdk-python](https://github.com/runtime-bridge/rbridge-sdk-python) | Python client, standard library only |
+| [runtime-bridge.github.io](https://github.com/runtime-bridge/runtime-bridge.github.io) | The website and documentation |
 
 ### Try it
 
